@@ -4,7 +4,7 @@ import Calender from "../components/calendar";
 import Appointment from "../components/appointments";
 import Navbar from "../components/navbar"; // Navbar bileşenini ekleyin
 
-const Randevu = () => {
+const Randevu:React.FC = () => {
   return (
     
      

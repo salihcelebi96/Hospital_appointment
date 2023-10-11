@@ -6,18 +6,22 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUsername } from '../reducers/doctorsReducers';
 import { useNavigate } from 'react-router-dom';
+import allUsersReducers, {setAllUsers} from "../reducers/allUsersReducers";
+import { RootState } from '../redux/store';
 
-// Kullanıcıları çekmek için kullanılacak async bir fonksiyon tanımlayın
+
 export async function fetchRandomUsers(count: number) {
+  
   try {
     const response = await fetch(`https://randomuser.me/api/?results=${count}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
+    
     return data.results;
   } catch (error) {
     console.error('Fetch error:', error);
@@ -31,6 +35,9 @@ const Doctors: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const allUsers = useSelector((state:RootState)=>state.users.users);
+
+
   const RandevuAl = (userName:string)=>{
     dispatch(setUsername(userName));
     navigate("/randevu");
@@ -43,18 +50,21 @@ const Doctors: React.FC = () => {
 
 
   useEffect(() => {
-    
-    fetchRandomUsers(8) 
-      .then((result) => setUsers(result))
+    fetchRandomUsers(8)
+      .then((result) => {
+        setUsers(result);
+        dispatch(setAllUsers(result)); // Redux store'a verileri ekleyin
+      })
       .catch((error) => console.error('Kullanıcılar getirilirken hata oluştu:', error));
   }, []);
+  
 
   return (
     <div className='grid md:grid-cols-2 sm:grid-cols-1  lg:grid-cols-3 xl:grid-cols-4 mx-5 my-5'>
       {users.map((user, index) => (
-        <Card className='my-3' sx={{ maxWidth: 345 }} key={index}>
+        <Card className='my-3 ' sx={{ maxWidth: 345 }} key={index}>
           <CardMedia
-            sx={{ height: 140 }}
+            sx={{ height: 200 }}
             image={user.picture.large}
             title={`${user.name.first} ${user.name.last}`}
           />

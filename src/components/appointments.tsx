@@ -7,7 +7,7 @@ const Appointments: React.FC = () => {
   
 
   return (
-    <div className= "flex justify-center items-center">
+    <div className= "flex justify-center items-center w-60">
       <Table/>
       
     </div>

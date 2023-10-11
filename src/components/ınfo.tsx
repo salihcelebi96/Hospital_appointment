@@ -62,8 +62,8 @@ const ContactForm: React.FC<ContactFormProps> = () => {
   };
 
   return (
-    <div className='h-full   flex items-center justify-center flex-col w-full mx-5'>
-      <div className='border flex flex-col justify-center items-center  border-gray-600 px-2 py-5 w-96 h-2/3 '>
+    <div className='h-full   flex items-center justify-center flex-col  mx-5'>
+      <div className='border flex flex-col justify-center items-center  border-gray-600 px-2 py-5 md:w-60  lg:w-96 h-2/3 '>
         <div className='text-2xl text-red-500 mb-2 '>
           <h1>İletişim Bilgileri Formu</h1>
         </div>

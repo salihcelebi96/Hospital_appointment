@@ -44,8 +44,8 @@ const Table: React.FC = () => {
   );
 
   return (
-    <div className="w-full flex justify-center items-center"> 
-      <div className= "h-[600px] border ">
+    <div className="w-full flex justify-center items-center "> 
+      <div className= "h-[600px]  ">
       
       <table className='w-[700px] '>
         <thead className='border h-10'>
