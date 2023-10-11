@@ -6,7 +6,7 @@ const Navbar: React.FC = () => {
 
   return (
     <div>
-         <div className='flex gap-4 items-center'>
+         <div className='flex  w-screen gap-4 items-center'>
             <Link to="/"> <BiHealth  size={50} color="blue" /></Link>
              <Link to="/" className='text-3xl text-blue-600 font-serif'>Hayat Hospital</Link>  
              
