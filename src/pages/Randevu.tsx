@@ -8,7 +8,7 @@ const Randevu:React.FC = () => {
   return (
     
      
-      <div className='grid lg:grid-cols-2 md:grid-cols-1 my-5'>
+      <div className='grid grid-cols-1   my-5'>
         <Info />
         <Appointment />
       </div>

@@ -23,7 +23,7 @@ const Table: React.FC = () => {
         <td className='text-center'>{item.phoneNumber}</td>
         <td className='text-center'>{item.date ? item.date.toLocaleString() : 'Tarih bilgisi yok'}</td>
         <td className='text-center'>{item.time}</td>
-        <td className='bg-red-600 hover:bg-red-400 cursor-pointer text-white text-center' onClick={() => handleDelete(index)}>Delete</td>
+        <td className='bg-red-600 hover:bg-red-400 cursor-pointer  text-white text-center  ' onClick={() => handleDelete(index)}>Delete</td>
       </tr>
       {index < infoItems.length - 1 && (
         <tr className="border-t border-gray-300"></tr>
@@ -44,10 +44,11 @@ const Table: React.FC = () => {
   );
 
   return (
-    <div className="w-full flex justify-center items-center "> 
+    <div className="w-full mx-5  flex justify-center items-center "> 
       <div className= "h-[600px]  ">
       
-      <table className='w-[700px] '>
+      <table className='lg:w-[700px] md:w-[600px] sm:w-[500px] xs:w-[400px]'>
+
         <thead className='border h-10'>
           {tableHeader}
         </thead>
