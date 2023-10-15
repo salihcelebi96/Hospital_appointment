@@ -23,6 +23,9 @@ const Navbar: React.FC = () => {
           <li>
             <Link className="navbar-link" to="/about">Hakkımızda</Link>
           </li>
+          <li>
+            <Link className="navbar-link" to="/randevu">Randevularım</Link>
+          </li>
         </ul>
       </nav>
     </div>

@@ -7,10 +7,15 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUsername } from '../reducers/doctorsReducers';
+import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
 import allUsersReducers, {setAllUsers} from "../reducers/allUsersReducers";
 import { RootState } from '../redux/store';
+
+interface DoctorsProps {
+  
+  setDoctorName:Dispatch<SetStateAction<string>>;
+}
 
 
 export async function fetchRandomUsers(count: number) {
@@ -28,18 +33,19 @@ export async function fetchRandomUsers(count: number) {
     return [];
   }
 }
+
 const Cv = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
-const Doctors: React.FC = () => {
+const Doctors: React.FC<DoctorsProps> = ({setDoctorName}) => {
   const [users, setUsers] = useState<any[]>([]); 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   const allUsers = useSelector((state:RootState)=>state.users.users);
 
 
   const RandevuAl = (userName:string)=>{
-    dispatch(setUsername(userName));
+    setDoctorName(userName);
     navigate("/randevu");
 
   }
@@ -69,15 +75,15 @@ const Doctors: React.FC = () => {
             title={`${user.name.first} ${user.name.last}`}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography className='text-center' gutterBottom variant="h5" component="div">
               {`${user.name.first} ${user.name.last}`}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {Cv} {/* Sabit CV metnini burada kullanabilirsiniz */}
+              {Cv} 
             </Typography>
           </CardContent>
-          <CardActions>
-            <Button onClick={() => RandevuAl(user.name.first)} size="small">Randevu Al</Button>
+          <CardActions className=' flex justify-center '>
+            <Button  onClick={() => RandevuAl(user.name.first)} size="small">Randevu Al</Button>
             
           </CardActions>
         </Card>

@@ -7,6 +7,7 @@ interface InfoItem {
   phoneNumber: string;
   date: Date | null;
   time: string;
+  doctorName:string;
 }
 
 interface InfoState {
@@ -22,8 +23,18 @@ const infoSlice = createSlice({
   initialState,
   reducers: {
     addInfo: (state, action: PayloadAction<InfoItem>) => {
-      state.infoItems.push(action.payload);
+      // Diğer alanları eklerken, sadece doctorName'i güncelleyin
+      const newItem = {
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+        phoneNumber: action.payload.phoneNumber,
+        date: action.payload.date,
+        time: action.payload.time,
+        doctorName: action.payload.doctorName, 
+      };
+      state.infoItems.push(newItem);
     },
+    
     deleteInfo: (state, action: PayloadAction<number>) => {
       
       state.infoItems.splice(action.payload, 1);

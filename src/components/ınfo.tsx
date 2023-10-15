@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import Calendar from "../components/calendar";
 import { addInfo } from "../reducers/information";
+import { RootState } from '../redux/store';
 
 const StyledInput = styled.input`
   width: 10rem;
@@ -10,18 +11,19 @@ const StyledInput = styled.input`
 `;
 
 interface ContactFormProps {
-  // İletişim formunun props'ları
+  doctorName: string;
 }
 
-const ContactForm: React.FC<ContactFormProps> = () => {
+
+
+const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
   const [firstNameInput, setFirstNameInput] = useState('');
   const [lastNameInput, setLastNameInput] = useState('');
   const [phoneNumberInput, setPhoneNumberInput] = useState('');
   const [selectedDated, setSelectedDated] = useState<Date | null>(null);
-
   const [selectedTimed, setSelectedTimed] = useState<string>('10:00'); 
 
-  // Redux bağlantıları
+
   
   const dispatch = useDispatch();
 
@@ -44,8 +46,9 @@ const ContactForm: React.FC<ContactFormProps> = () => {
       firstName: firstNameInput,
       lastName: lastNameInput,
       phoneNumber: phoneNumberInput,
-      date: selectedDated, // Redux'tan alınan tarih
-      time: selectedTimed, // Redux'tan alınan saat
+      date: selectedDated, 
+      time: selectedTimed, 
+      doctorName:doctorName
     };
   
     dispatch(addInfo(newInfo));
@@ -55,10 +58,12 @@ const ContactForm: React.FC<ContactFormProps> = () => {
     console.log(phoneNumberInput);
     console.log('Seçilen Tarih:', selectedDated);
     console.log('Seçilen Saat:', selectedTimed);
+    
   
     setFirstNameInput('');
     setLastNameInput('');
     setPhoneNumberInput('');
+
   };
 
   return (
@@ -67,6 +72,7 @@ const ContactForm: React.FC<ContactFormProps> = () => {
         <div className='text-2xl text-red-500 mb-2 '>
           <h1>İletişim Bilgileri Formu</h1>
         </div>
+        
         <div>
           <form className='flex flex-col justify-center items-center gap-1 ' onSubmit={handleSubmit}>
             

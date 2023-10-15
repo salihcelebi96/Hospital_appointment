@@ -1,20 +1,27 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import Info from "../reducers/information";
-import usernameReducer from '../reducers/doctorsReducers';
+import storage from "redux-persist/lib/storage";
 import users from "../reducers/allUsersReducers";
+import { persistStore, persistReducer } from 'redux-persist';
 
+const persistConfig = {
+  key: "root",
+  version: 1,
+  storage, 
+};
 
-
-
-
-const store = configureStore({
-  reducer: {
-    information:Info,
-    username: usernameReducer,
-    users:users
-
-  },
+const rootReducer = combineReducers({
+  information: Info,
+  users: users,
 });
 
-export type RootState = ReturnType<typeof store.getState>
-export default store;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+});
+
+const persistor = persistStore(store);
+
+export type RootState = ReturnType<typeof store.getState>;
+export { store, persistor };
