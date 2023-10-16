@@ -1,25 +1,27 @@
+// allUsersSlice.ts
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface User {
   id: number;
-  name: string;
-  // Diğer kullanıcı özellikleri
+  name: {
+    first: string;
+    last: string;
+  };
+  picture: {
+    large: string;
+  };
 }
 
-interface AllUsersState {
-  users: User[];
-}
-
-const initialState: AllUsersState = {
-  users: [],
-};
+// Başlangıç durumu
+const initialState: User[] = [];
 
 const allUsersSlice = createSlice({
   name: 'allUsers',
   initialState,
   reducers: {
     setAllUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = action.payload;
+      return action.payload;
     },
   },
 });

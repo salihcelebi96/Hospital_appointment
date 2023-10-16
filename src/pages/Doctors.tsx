@@ -9,12 +9,23 @@ import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
-import allUsersReducers, {setAllUsers} from "../reducers/allUsersReducers";
+import  {setAllUsers} from "../reducers/allUsersReducers";
 import { RootState } from '../redux/store';
 
 interface DoctorsProps {
   
   setDoctorName:Dispatch<SetStateAction<string>>;
+}
+
+interface User {
+  id: number;
+  name: {
+    first: string;
+    last: string;
+  };
+  picture: {
+    large: string;
+  };
 }
 
 
@@ -36,38 +47,33 @@ export async function fetchRandomUsers(count: number) {
 
 const Cv = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
-const Doctors: React.FC<DoctorsProps> = ({setDoctorName}) => {
-  const [users, setUsers] = useState<any[]>([]); 
+const Doctors: React.FC<DoctorsProps> = ({ setDoctorName }) => {
+  const [users, setUsers] = useState<User[]>([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  const allUsers = useSelector((state:RootState)=>state.users.users);
+  const allUsers = useSelector((state: RootState) => state.allUsers);
 
-
-  const RandevuAl = (userName:string)=>{
+  const RandevuAl = (userName: string) => {
     setDoctorName(userName);
     navigate("/randevu");
-
   }
 
-
-
-
-
-
   useEffect(() => {
-    fetchRandomUsers(8)
+    if(allUsers.length ===0){
+      fetchRandomUsers(8)
       .then((result) => {
         setUsers(result);
         dispatch(setAllUsers(result)); // Redux store'a verileri ekleyin
+        
       })
       .catch((error) => console.error('Kullanıcılar getirilirken hata oluştu:', error));
+    }
+    
   }, []);
   
-
   return (
     <div className='grid md:grid-cols-2 sm:grid-cols-1  lg:grid-cols-3 xl:grid-cols-4 mx-5 my-5'>
-      {users.map((user, index) => (
+      {allUsers.map((user: User, index: number) => (
         <Card className='my-3 ' sx={{ maxWidth: 345 }} key={index}>
           <CardMedia
             sx={{ height: 200 }}
@@ -79,17 +85,17 @@ const Doctors: React.FC<DoctorsProps> = ({setDoctorName}) => {
               {`${user.name.first} ${user.name.last}`}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {Cv} 
+              {Cv}
             </Typography>
           </CardContent>
           <CardActions className=' flex justify-center '>
-            <Button  onClick={() => RandevuAl(user.name.first)} size="small">Randevu Al</Button>
-            
+            <Button onClick={() => RandevuAl(user.name.first)} size="small">Randevu Al</Button>
           </CardActions>
         </Card>
       ))}
     </div>
   );
 };
+
 
 export default Doctors;
