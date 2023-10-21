@@ -88,8 +88,8 @@ const Doctors: React.FC<DoctorsProps> = ({ setDoctorName }) => {
               {Cv}
             </Typography>
           </CardContent>
-          <CardActions className=' flex justify-center '>
-            <Button onClick={() => RandevuAl(user.name.first)} size="small">Randevu Al</Button>
+          <CardActions className=' flex justify-center  border hover:bg-gray-200'>
+            <Button className=' ' onClick={() => RandevuAl(user.name.first)} size="small">Randevu Al</Button>
           </CardActions>
         </Card>
       ))}

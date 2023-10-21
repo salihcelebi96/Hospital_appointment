@@ -94,7 +94,7 @@ const About: React.FC = () => {
         <div className=''>
           <Footer/>
         </div>
-        <div className=' text-white left-4  absolute top-1/2'>
+        <div className=' text-white left-4  absolute top-1'>
           <ScrollToTopButton/>
         </div>
         

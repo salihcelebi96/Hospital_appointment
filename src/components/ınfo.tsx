@@ -4,10 +4,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import Calendar from "../components/calendar";
 import { addInfo } from "../reducers/information";
 import { RootState } from '../redux/store';
+import "../css/info.css";
 
 const StyledInput = styled.input`
-  width: 10rem;
-  border: 1px solid #000;
+  width: 250px;
+  height: 2rem;
+  border: 1px solid gray;
+  outline: none;
+  text-align:center;
+  border:1px solid gray;
+  border-radius:3px;
+
 `;
 
 interface ContactFormProps {
@@ -68,13 +75,14 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
 
   return (
     <div className='h-full   flex items-center justify-center flex-col  mx-5'>
-      <div className='border flex flex-col justify-center items-center    border-gray-600 px-2 py-5 md:w-72  lg:w-96 my-5'>
+      <div id='border' className='border-2   flex flex-col justify-center items-center    px-2 py-5 md:w-72  lg:w-96 my-5'>
+      <div id="light"></div>
         <div className='text-2xl text-red-500 mb-2 '>
           <h1>İletişim Bilgileri Formu</h1>
         </div>
         
         <div>
-          <form className='flex flex-col justify-center items-center gap-1 ' onSubmit={handleSubmit}>
+          <form className='flex flex-col justify-center items-center gap-2 py-5' onSubmit={handleSubmit}>
             
             <Calendar selectedDated={selectedDated} setSelectedDated={setSelectedDated} setSelectedTimed={setSelectedTimed} selectedTimed={selectedTimed} />
             <StyledInput
@@ -82,6 +90,7 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
               placeholder='Ad'
               value={firstNameInput}
               onChange={handleFirstNameChange}
+              
             />
             <StyledInput
               type='text'

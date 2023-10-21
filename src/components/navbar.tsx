@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "../css/navbar.css"
 import {BiHealth} from 'react-icons/bi'; 
+
+
+
 const Navbar: React.FC = () => {
 
   return (
