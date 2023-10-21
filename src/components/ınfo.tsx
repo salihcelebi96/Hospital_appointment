@@ -14,6 +14,7 @@ const StyledInput = styled.input`
   text-align:center;
   border:1px solid gray;
   border-radius:3px;
+  
 
 `;
 
@@ -82,7 +83,7 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
         </div>
         
         <div>
-          <form className='flex flex-col justify-center items-center gap-2 py-5' onSubmit={handleSubmit}>
+          <form className='flex flex-col justify-center  items-center gap-2 py-5' onSubmit={handleSubmit}>
             
             <Calendar selectedDated={selectedDated} setSelectedDated={setSelectedDated} setSelectedTimed={setSelectedTimed} selectedTimed={selectedTimed} />
             <StyledInput
@@ -90,6 +91,7 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
               placeholder='Ad'
               value={firstNameInput}
               onChange={handleFirstNameChange}
+              
               
             />
             <StyledInput

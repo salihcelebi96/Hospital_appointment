@@ -22,18 +22,21 @@ const Table: React.FC = () => {
   
   const tableRows = infoItems.map((item, index) => (
     <React.Fragment key={index}>
-      <tr className="h-10 mt-5">
-        <td className='text-center'>{item.firstName}</td>
+      <tr className="h-10 mt-5 ">
+        <td className='text-center'>{item.firstName}  </td>
         <td className='text-center'>{item.lastName}</td>
         <td className='text-center'>{item.phoneNumber}</td>
         <td className='text-center'>{item.date ? new Date(item.date).toLocaleDateString() : 'Tarih bilgisi yok'}</td>
         <td className='text-center'>{item.time}</td>
-        <td className='text-center'>{item.doctorName}</td>
+        <td className='text-center   '>{item.doctorName}</td>
 
         <td className='bg-red-600 hover:bg-red-400 cursor-pointer h-full   text-center text-white  '  onClick={() => handleDelete(index)}> Delete </td>
       </tr>
       {index < infoItems.length - 1 && (
-        <tr className="border-t border-gray-300"></tr>
+        <tr className="border-t border-gray-300">
+          
+        </tr>
+
       )}
     </React.Fragment>
   ));
