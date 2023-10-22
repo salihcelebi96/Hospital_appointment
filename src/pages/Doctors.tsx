@@ -72,9 +72,9 @@ const Doctors: React.FC<DoctorsProps> = ({ setDoctorName }) => {
   }, []);
   
   return (
-    <div className='grid md:grid-cols-2 sm:grid-cols-1  lg:grid-cols-3 xl:grid-cols-4 mx-5 my-5'>
+    <div className='grid md:grid-cols-2 sm:grid-cols-1   lg:grid-cols-3 xl:grid-cols-4 mx-5 my-5'>
       {allUsers.map((user: User, index: number) => (
-        <Card className='my-3 ' sx={{ maxWidth: 345 }} key={index}>
+        <Card className='my-3 bg-black' sx={{ maxWidth: 345 }} key={index}>
           <CardMedia
             sx={{ height: 200 }}
             image={user.picture.large}
