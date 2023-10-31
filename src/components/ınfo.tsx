@@ -35,20 +35,28 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
   
   const dispatch = useDispatch();
 
-  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFirstNameChange = (e: any) => {
     setFirstNameInput(e.target.value);
   };
 
-  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLastNameChange = (e: any) => {
     setLastNameInput(e.target.value);
   };
 
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneNumberChange = (e: any) => {
     setPhoneNumberInput(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!firstNameInput || !lastNameInput || !phoneNumberInput || !selectedDated || !selectedTimed) {
+      alert('Lütfen tüm bilgileri doldurun.');
+      return; 
+    }
+
+
+
     
     const newInfo = {
       firstName: firstNameInput,
@@ -58,8 +66,10 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
       time: selectedTimed, 
       doctorName:doctorName
     };
+
+    
   
-    dispatch(addInfo(newInfo));
+    
   
     console.log(firstNameInput);
     console.log(lastNameInput);
