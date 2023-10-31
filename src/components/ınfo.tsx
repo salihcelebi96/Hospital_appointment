@@ -5,6 +5,8 @@ import Calendar from "../components/calendar";
 import { addInfo } from "../reducers/information";
 import { RootState } from '../redux/store';
 import "../css/info.css";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer,toast } from 'react-toastify';
 
 const StyledInput = styled.input`
   width: 250px;
@@ -51,7 +53,7 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
     e.preventDefault();
 
     if (!firstNameInput || !lastNameInput || !phoneNumberInput || !selectedDated || !selectedTimed) {
-      alert('Lütfen tüm bilgileri doldurun.');
+      toast.error('Lütfen bütün alanları doldurunuz !');
       return; 
     }
 
@@ -119,6 +121,7 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
             <button className='px-5 w-[102px] bg-green-700 hover:bg-green-600 text-white py-1 my-3'>Kaydet</button>
           </form>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );

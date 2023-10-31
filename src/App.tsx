@@ -10,6 +10,9 @@ import Navbar from "./components/navbar";
 
 
 
+
+
+
 function App() {
   const [doctorName, setDoctorName] = useState<string>("");
   return (
@@ -22,6 +25,7 @@ function App() {
         <Route path="/randevu" element={<Randevu doctorName={doctorName} />} />
         <Route path="/doctors" element={<Doctors setDoctorName={setDoctorName} />} />
         <Route path="/about" element={<About />} />
+        
         </Routes>
       </Router>
    
