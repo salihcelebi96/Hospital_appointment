@@ -8,6 +8,10 @@ import "../css/info.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer,toast } from 'react-toastify';
 
+
+
+
+
 const StyledInput = styled.input`
   width: 250px;
   height: 2rem;
@@ -29,7 +33,7 @@ interface ContactFormProps {
 const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
   const [firstNameInput, setFirstNameInput] = useState('');
   const [lastNameInput, setLastNameInput] = useState('');
-  const [phoneNumberInput, setPhoneNumberInput] = useState('');
+  const [phoneNumberInput, setPhoneNumberInput] = useState("");
   const [selectedDated, setSelectedDated] = useState<Date | null>(null);
   const [selectedTimed, setSelectedTimed] = useState<string>('10:00'); 
 
@@ -114,11 +118,14 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
               onChange={handleLastNameChange}
             />
             <StyledInput
-              type='text'
+              type="number"
               placeholder='Telefon Numarası'
               value={phoneNumberInput}
               onChange={handlePhoneNumberChange}
+              
             />
+          
+           
             <button className='px-5 w-[102px] bg-green-700 hover:bg-green-600 text-white py-1 my-3'>Kaydet</button>
           </form>
         </div>
