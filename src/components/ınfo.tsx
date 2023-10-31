@@ -78,6 +78,7 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
     console.log(phoneNumberInput);
     console.log('Seçilen Tarih:', selectedDated);
     console.log('Seçilen Saat:', selectedTimed);
+    dispatch(addInfo(newInfo))
     
   
     setFirstNameInput('');
