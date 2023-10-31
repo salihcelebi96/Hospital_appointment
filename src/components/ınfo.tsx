@@ -122,6 +122,7 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
               placeholder='Telefon Numarası'
               value={phoneNumberInput}
               onChange={handlePhoneNumberChange}
+              className='webKit'
               
             />
           

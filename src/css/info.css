@@ -1,0 +1,8 @@
+
+
+/* type number olunca increment ve decrement arrowları kaldırır. */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
