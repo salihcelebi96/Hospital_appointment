@@ -21,6 +21,7 @@ const StyledInput = styled.input`
   border:1px solid gray;
   border-radius:3px;
   
+  
 
 `;
 
@@ -49,8 +50,16 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
     setLastNameInput(e.target.value);
   };
 
-  const handlePhoneNumberChange = (e: any) => {
-    setPhoneNumberInput(e.target.value);
+  const handlePhoneNumberChange = (e:any) => {
+    const value = e.target.value;
+
+    // Remove any non-numeric characters from the input
+    const numericValue = value.replace(/\D/g, '');
+
+    // Limit the value to 10 characters (digits)
+    const limitedValue = numericValue.slice(0, 10);
+
+    setPhoneNumberInput(limitedValue);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -119,10 +128,11 @@ const ContactForm: React.FC<ContactFormProps > = ({ doctorName}) => {
             />
             <StyledInput
               type="number"
+              pattern="^\d{10}$"
               placeholder='Telefon Numarası'
               value={phoneNumberInput}
               onChange={handlePhoneNumberChange}
-              className='webKit'
+              
               
             />
           
